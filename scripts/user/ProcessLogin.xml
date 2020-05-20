@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+    <map.sqlquery datasource="'authorization'">
+		<sqlquery.query xml:space="preserve">
+			SELECT id
+			,      userName
+			,      preferredLanguage
+			FROM   LoginUser
+			WHERE  userName = ?
+			AND    password = ?
+		</sqlquery.query>
+		<sqlquery.addParameter value="[/Login/UserName]"/>
+		<sqlquery.addParameter value="[/Login/Password]"/>
+
+	    <message name="Result">
+	    	<property name="Authenticated" type="boolean" direction="out">
+	    		<expression value="$rowCount &gt; 0"/>
+	    	</property>
+	    	<property name="UserName" type="string" direction="out">
+	    		<expression condition="$rowCount &gt; 0" value="$columnValue( 'userName' )"/>
+	    		<expression value="null"/>
+	    	</property>
+	    	<property name="UserId" type="integer" direction="out">
+	    		<expression condition="$rowCount &gt; 0" value="$columnValue( 'id' )"/>
+	    		<expression value="null"/>
+	    	</property>
+	    	<property name="PreferredLanguage" type="string" direction="out">
+	    		<expression condition="$rowCount &gt; 0" value="$columnValue( 'preferredLanguage' )"/>
+	    		<expression value="null"/>
+	    	</property>
+	    </message>
+    </map.sqlquery>
+</navascript>

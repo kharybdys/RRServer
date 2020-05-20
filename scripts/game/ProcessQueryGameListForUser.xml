@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+    <map.sqlquery datasource="'roborally'">
+		<sqlquery.query xml:space="preserve">
+			SELECT g.id
+			,      g.name
+			,      g.scenarioName
+			,      g.currentRound
+			,      ( SELECT t.text
+			         FROM   Translation t
+			         WHERE  t.key      = g.statusId
+			         AND    t.language = ?
+			       ) AS statusDescription
+			FROM   Game g
+			WHERE  EXISTS ( SELECT 1
+			                FROM   LoginUser_To_Games lg
+			                WHERE  lg.GameId = g.id
+			                AND    lg.UserId = ?
+			              )
+		</sqlquery.query>
+		<sqlquery.addParameter value="GetRequestLocale()"/>
+		<sqlquery.addParameter value="[/UserContext/UserId]"/>
+
+	    <message name="Games" type="array">
+	    	<message name="Games" type="definition">
+		    	<property name="GameId" type="integer" direction="out"/>
+		    	<property name="Name" type="string" direction="out"/>
+		    	<property name="ScenarioName" type="string" direction="out"/>
+		    	<property name="CurrentRound" type="integer" direction="out"/>
+		    	<property name="StatusDescription" type="string" direction="out"/>
+	    	</message>
+		</message>
+		
+		<message name="Games">	    	
+		    <sqlquery.resultSet>
+		    	<property name="GameId" type="integer" direction="out">
+		    		<expression value="$columnValue( 'id' )"/>
+		    	</property>
+		    	<property name="Name" type="string" direction="out">
+		    		<expression value="$columnValue( 'name' )"/>
+		    	</property>
+		    	<property name="ScenarioName" type="string" direction="out">
+		    		<expression value="$columnValue( 'scenarioName' )"/>
+		    	</property>
+		    	<property name="CurrentRound" type="integer" direction="out">
+		    		<expression value="$columnValue( 'currentRound' )"/>
+		    	</property>
+		    	<property name="StatusDescription" type="string" direction="out">
+		    		<expression value="$columnValue( 'statusDescription' )"/>
+		    	</property>
+		    </sqlquery.resultSet>
+	    </message>
+    </map.sqlquery>
+</navascript>

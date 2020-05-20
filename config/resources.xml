@@ -1,0 +1,40 @@
+<tml>
+    <message name="alias"/>
+    <message name="resources"/>
+    <message name="deployments">
+        <!-- Definitions for development environment -->
+        <message name="develop">
+            <message name="alias">
+                <property name="authorization" value="roborally"/>
+            </message>
+            <message name="resources">
+                <message name="roborally">
+                    <property name="type" value="mysql"/>
+                    <property name="url" value="jdbc:mysql://localhost/roborally"/>
+                    <property name="username" value="roborally"/>
+                    <property name="password" value="garfield"/>
+                    <property name="refresh" type="float" value="0.01"/>
+                    <property name="min_connections" type="integer" value="1"/>
+                    <property name="max_connections" type="integer" value="100"/>
+                </message>
+            </message>
+        </message>
+        <!-- Definitions for production environment -->
+        <message name="production">
+            <message name="alias">
+                <property name="authorization" value="roborally"/>
+            </message>
+            <message name="resources">
+                <message name="roborally">
+                    <property name="type" value="mysql"/>
+                    <property name="url" value="jdbc:mysql://localhost/roborally"/>
+                    <property name="username" value="roborally"/>
+                    <property name="password" value="garfield"/>
+                    <property name="refresh" type="float" value="0.01"/>
+                    <property name="min_connections" type="integer" value="1"/>
+                    <property name="max_connections" type="integer" value="100"/>
+                </message>
+            </message>
+        </message>
+    </message>
+</tml>

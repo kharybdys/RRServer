@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//resources/texts/KNBSB/text.properties=UTF-8
+encoding//resources/texts/KNBSB/text_en.properties=UTF-8
+encoding//resources/texts/KNBSB/text_fr.properties=UTF-8
+encoding//resources/texts/text.properties=UTF-8
+encoding//resources/texts/text_en.properties=UTF-8
+encoding//resources/texts/text_fr.properties=UTF-8
+encoding//resources/texts/validation.properties=UTF-8
+encoding//resources/texts/validation_en.properties=UTF-8
+encoding//resources/texts/validation_fr.properties=UTF-8
+encoding//scripts/vla/importcsv/emailparent/HelpContent.html=UTF-8
+encoding//scripts/vla/importcsv/emailparent/HelpContent_en.html=UTF-8
+encoding//scripts/vla/importcsv/emailparent/HelpContent_fr.html=UTF-8
+encoding//scripts/vla/migrate/ProcessInsertSLCDefaults.xml=UTF-8

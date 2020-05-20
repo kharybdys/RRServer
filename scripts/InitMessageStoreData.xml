@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    <message name="UserContext">
+    	<property name="UserId" type="integer" direction="in"/>
+    	<property name="GameId" type="integer" direction="in"/>
+    </message>
+</navascript>

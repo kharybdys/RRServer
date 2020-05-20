@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+    <message name="Login">
+    	<property name="UserName" type="string" direction="in"/>
+    	<property name="Password" type="string" direction="in" subtype="hidden=true"/>
+    	<property name="SaveUID" type="boolean" direction="in"/>
+    </message>
+</navascript>
