@@ -8,4 +8,6 @@ This is the main project that contains the business logic of the server. Other p
 - The project RRLibrary to provide the RoboRally specific logic needed for the server, see https://github.com/kharybdys/RRLibrary
 - The project RRWeb to provide the website interface, see https://github.com/kharybdys/RRWeb
 
+This project uses the open-source Navajo and Tipi (Vaadin) implementations as can be found at https://github.com/Dexels/navajo for the Server and Website respectively
+
 If you want to contribute take a look at the issues list. Issues that require knowledge of the boardgame RoboRally will start with (RoboRally). Fork the repository and shoot me pull requests ;)
