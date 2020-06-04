@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+
+	<param name="ScenarioName">
+		<expression condition="?[/NewGame/ScenarioName]" value="[/NewGame/ScenarioName]"/>
+		<expression value="null"/>
+	</param>
+	
+	<message name="PreviewImage">
+		<property name="Image">
+			<expression condition="[/@ScenarioName] != null" value="CreatePreviewImage( [/@ScenarioName] )"/>
+			<expression value="null"/>
+		</property>
+	</message>    
+</navascript>

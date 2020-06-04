@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+	<message name="NewGame">
+		<property name="Name" direction="in" type="string"/>
+		<map.dropdown datasource="'roborally'" name="'Scenario'" direction="'in'" emptyOption="true">
+			<dropdown.query xml:space="preserve">
+				SELECT key, text
+				FROM   Translation
+				WHERE  group    = 'SCENARIO'
+				AND    language = ?
+			</dropdown.query>
+			<dropdown.addParameter value="GetRequestLocale()"/>
+		</map.dropdown>
+	</message>
+</navascript>

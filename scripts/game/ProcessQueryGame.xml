@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+	<map.game gameId="1">
+		<message name="Result">
+			<property name="BoardImage" type="binary">
+				<expression value="$boardImage"/>
+			</property>
+		</message>
+	</map.game>
+</navascript>

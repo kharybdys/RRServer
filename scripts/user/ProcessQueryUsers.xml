@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    
+    <map.sqlquery datasource="'roborally'">
+    	<param name="TransactionContext">
+    		<expression value="$transactionContext"/>
+    	</param>
+    	
+		<sqlquery.query xml:space="preserve">
+			SELECT lu.id
+			,      lu.username
+			,      lu.preferredLanguage
+			,      ( SELECT t.text 
+			         FROM   Translation t
+			         WHERE  t.group    = 'LANGUAGE'
+			         AND    t.key      = lu.preferredLanguage
+			         AND    t.language = ?
+			       ) AS languageDescription
+			FROM   LoginUser u
+		</sqlquery.query>
+		<sqlquery.addParameter value="GetRequestLocale()"/>
+
+	    <message name="Users" type="array">
+	    	<message name="Users" type="definition">
+		    	<property name="UserId" type="integer" direction="out"/>
+		    	<property name="UserName" type="string" direction="out"/>
+		    	<property name="PreferredLanguage" type="selection" direction="out"/>
+		    	<property name="PreferredLanguageDescription" type="string" direction="out"/>
+	    	</message>
+		</message>
+		
+		<message name="Users">	    	
+		    <sqlquery.resultSet>
+		    	<property name="UserId" type="integer" direction="out">
+		    		<expression value="$columnValue( 'id' )"/>
+		    	</property>
+		    	<property name="UserName" type="string" direction="out">
+		    		<expression value="$columnValue( 'username' )"/>
+		    	</property>
+		    	<map.dropdown name="'PreferredLanguage'" direction="'in'" selectedValue="../$columnValue( 'preferredLanguage' )" emptyOption="false" transactionContext="[/@TransactionContext]">
+		    		<dropdown.query xml:space="preserve">
+		    			SELECT key, text
+		    			FROM   Translation t
+		    			WHERE  t.group    = 'LANGUAGE'
+		    			AND    t.language = ?
+		    		</dropdown.query>
+					<dropdown.addParameter value="GetRequestLocale()"/>
+		    	</map.dropdown>
+		    	<property name="PreferredLanguageDescription" type="string" direction="out">
+		    		<expression value="$columnValue( 'languageDescription' )"/>
+		    	</property>
+		    </sqlquery.resultSet>
+	    </message>
+    </map.sqlquery>
+</navascript>

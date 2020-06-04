@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navascript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.navajo.nl/schemas/navascript.xsd">
+    <validations>
+    	<check code="NO_SCENARIO_CHOSEN">
+    		?[/NewGame/ScenarioName] 
+    		AND 
+    		SingleValueQuery( 'roborally: SELECT COUNT(*) FROM Translation WHERE group = ? AND key = ?', 'SCENARIO', [/NewGame/ScenarioName] ) &gt; 0
+    	</check>
+    </validations>
+    
+	<map.sqlquery datasource="'roborally'">
+		<param name="TransactionContext">
+			<expression value="$transactionContext"/>
+		</param>
+		
+		<sqlquery.update xml:space="preserve">
+			INSERT INTO Game (name, scenarioName, createdBy, updatedBy ) VALUES ( ?, ?, ?, ? )
+		</sqlquery.update>
+		<sqlquery.addParameter value="[/NewGame/Name]"/>
+		<sqlquery.addParameter value="[/NewGame/ScenarioName]"/>
+		<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+		<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+		
+		<sqlquery.doUpdate/>
+		
+		<param name="GameId">
+			<expression value="SingleValueQuery( [/@TransactionContext], 'SELECT LAST_INSERT_ID()' )"/>
+		</param>
+		
+		<!-- Insert the bots given the users -->
+		<map.arraymessage>
+			<field name="emptyMaps">
+				<map ref="/Users">
+					<map.sqlquery transactionContext="[/@TransactionContext]">
+						<sqlquery.update xml:space="preserve">
+							INSERT INTO Bot ( game, user, createdBy, updatedBy ) VALUES ( ?, ?, ?, ? )
+						</sqlquery.update>
+						<sqlquery.addParameter value="[/@GameId]"/>
+						<sqlquery.addParameter value="[UserId]"/>
+						<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+						<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+						
+						<sqlquery.doUpdate/>
+						
+					</map.sqlquery>
+				</map>
+			</field>
+		</map.arraymessage>
+		
+		<!-- Insert the correct number of flags -->
+		<param name="OrderNumber">
+			<expression value="1"/>
+		</param>
+		
+		<message name="InsertFlags" mode="ignore" count="GetNrOfFlags( [/NewGame/ScenarioName] )">
+			<map.sqlquery transactionContext="[/@TransactionContext]">
+				<sqlquery.update xml:space="preserve">
+					INSERT INTO Flag ( game, orderNumber, createdBy, updatedBy ) VALUES ( ?, ?, ?, ? )
+				</sqlquery.update>
+				<sqlquery.addParameter value="[/@GameId]"/>
+				<sqlquery.addParameter value="[/@OrderNumber]"/>
+				<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+				<sqlquery.addParameter value="[/__aaa__/USERNAME]"/>
+				
+				<sqlquery.doUpdate/>
+				
+				<param name="OrderNumber">
+					<expression value="[/@OrderNumber] + 1"/>
+				</param>
+				
+			</map.sqlquery>
+		</message>		
+	</map.sqlquery>
+	
+	<!-- End by performing first setup of this game -->
+	<map.game gameId="[/@GameId]">
+		<game.performFirstSetup/>
+	</map.game>
+	
+</navascript>
