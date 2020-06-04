@@ -10,14 +10,15 @@
 			,      g.currentRound
 			,      ( SELECT t.text
 			         FROM   Translation t
-			         WHERE  t.key      = g.statusId
+			         WHERE  t.group    = 'GAME_STATUS'
+			         AND    t.key      = g.statusId
 			         AND    t.language = ?
 			       ) AS statusDescription
 			FROM   Game g
 			WHERE  EXISTS ( SELECT 1
-			                FROM   LoginUser_To_Games lg
-			                WHERE  lg.GameId = g.id
-			                AND    lg.UserId = ?
+			                FROM   Bot b
+			                WHERE  b.game = g.id
+			                AND    b.user = ?
 			              )
 		</sqlquery.query>
 		<sqlquery.addParameter value="GetRequestLocale()"/>

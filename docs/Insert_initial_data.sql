@@ -9,8 +9,10 @@ INSERT INTO loginuser (userName, password, preferredLanguage) VALUES
 ('test6', 'test6', 'nl'),
 ('test7', 'test7', 'nl'),
 ('test8', 'test8', 'nl'),
-('test9', 'test9', 'nl');
-
+('test9', 'test9', 'nl')
+;
+DELETE FROM Translation WHERE id > 0
+;
 -- Translations
 INSERT INTO Translation (`group`, `key`, language, text) VALUES 
 ( 'GAME_STATUS', 'AVAILABLE', 'nl', 'Beschikbaar' ),
@@ -23,9 +25,9 @@ INSERT INTO Translation (`group`, `key`, language, text) VALUES
 ( 'EVENT_MESSAGE', 'BOT_PUSHES', 'nl', '# duwt %' ),
 ( 'EVENT_MESSAGE', 'CONVEYORBELT_STALL', 'nl', '# en % staan stil op de lopende band omdat ze anders op elkaar botsen' ),
 ( 'EVENT_MESSAGE', 'BOT_SHOOTS', 'nl', '# raakt % met de laser' ),
-( 'EVENT_MESSAGE', 'BOARD_SHOOTS', 'nl', '# wordt geraakt door een laser op het bord' ),
-( 'EVENT_MESSAGE', 'BOT_DIES_DAMAGE', 'nl', '# is dood gegaan door teveel schade' ),
-( 'EVENT_MESSAGE', 'BOT_DIES_HOLE', 'nl', '# is dood gegaan doordat het in een gat gekomen is' ),
+( 'EVENT_MESSAGE', 'BOARD_SHOOTS', 'nl', '% wordt geraakt door een laser op het bord' ),
+( 'EVENT_MESSAGE', 'BOT_DIES_DAMAGE', 'nl', '% is dood gegaan door teveel schade' ),
+( 'EVENT_MESSAGE', 'BOT_DIES_HOLE', 'nl', '% is dood gegaan doordat het in een gat gekomen is' ),
 ( 'EVENT_MESSAGE', 'ARCHIVEMARKER_MOVED', 'nl', '# heeft een nieuwe archiveMarker op coordinaten $' ),
 ( 'EVENT_MESSAGE', 'POWER_DOWN', 'nl', '# powert down voor deze ronde' ),
 ( 'EVENT_MESSAGE', 'BOT_HITS_WALL', 'nl', '# botst tegen een muur' ),
@@ -49,4 +51,9 @@ INSERT INTO Translation (`group`, `key`, language, text) VALUES
 ( 'SCENARIO', 'IslandHop', 'nl', 'Island Hop (2-8, Medium lengte, Beginner)' ),
 ( 'SCENARIO', 'DizzyDash', 'nl', 'Dizzy Dash (2-8, Korte lengte, Beginner)' ),
 ( 'SCENARIO', 'Checkmate', 'nl', 'Checkmate (5-8, Korte lengte, Beginner)' ),
-( 'SCENARIO', 'RiskyExchange', 'nl', 'Risky Exchange (2-8, Medium lengte, Beginner)' );
+( 'SCENARIO', 'RiskyExchange', 'nl', 'Risky Exchange (2-8, Medium lengte, Beginner)' ),
+( 'LANGUAGE', 'NL', 'nl', 'Nederlands' ),
+( 'LANGUAGE', 'EN', 'nl', 'Engels' ),
+( 'LANGUAGE', 'NL', 'en', 'Dutch' ),
+( 'LANGUAGE', 'EN', 'en', 'English' )
+;
