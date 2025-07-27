@@ -11,3 +11,7 @@ This is the main project that contains the business logic of the server. Other p
 This project uses the open-source Navajo and Tipi (Vaadin) implementations as can be found at https://github.com/Dexels/navajo for the Server and Website respectively
 
 If you want to contribute take a look at the issues list. Issues that require knowledge of the boardgame RoboRally will start with (RoboRally). Fork the repository and shoot me pull requests ;)
+
+##
+
+I have deprecated this project when I moved companies, see [https://github.com/kharybdys/roborally] for the restart
